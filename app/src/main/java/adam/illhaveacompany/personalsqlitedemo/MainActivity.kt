@@ -1,9 +1,7 @@
 package adam.illhaveacompany.personalsqlitedemo
 
-import android.graphics.PointF.length
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
@@ -13,6 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setupListofDataIntoRecyclerView()
 
         btn_enter.setOnClickListener {
             addRecord()
@@ -24,6 +23,8 @@ class MainActivity : AppCompatActivity() {
             recyclerView.layoutManager = LinearLayoutManager(this)
 
             val itemAdapter = ItemAdapter(this, getItemsList())
+
+            recyclerView.adapter = itemAdapter
 
         }
     }
