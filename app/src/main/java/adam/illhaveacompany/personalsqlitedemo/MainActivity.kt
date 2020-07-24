@@ -19,10 +19,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setupListofDataIntoRecyclerView(){
-        if(getItemsList().size > 0) {
+        if(getAllNames().size > 0) {
             recyclerView.layoutManager = LinearLayoutManager(this)
 
-            val itemAdapter = ItemAdapter(this, getItemsList())
+            //I need to find a way to make it getItemsList of the ID's, names and emails
+            val itemAdapter = ItemAdapter(this, getAllNames())
 
             recyclerView.adapter = itemAdapter
 
@@ -48,12 +49,19 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(applicationContext,"Record save attemped (with nothing in the database yet)", Toast.LENGTH_LONG).show()
         }
     }
-
-    fun getItemsList() : ArrayList<EmpModelClass>{
+/*
+    private fun getItemsList() : ArrayList<EmpModelClass>{
        val databaseHandler : DatabaseHandler = DatabaseHandler(this)
-        val seeEmployees : ArrayList<EmpModelClass> = databaseHandler.viewEmployee()
-        return seeEmployees
+        val empList : ArrayList<EmpModelClass> = databaseHandler.viewEmployee()
+        return empList
     }//1
+    */
+
+    private fun getAllNames(): ArrayList<String> {
+        val dbHandler = DatabaseHandler(this)
+        val allNames = dbHandler.getAllNamesList()
+        return allNames
+    }//
 
 
 
