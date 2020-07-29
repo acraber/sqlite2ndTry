@@ -86,7 +86,7 @@ class DatabaseHandler (context: Context) :
         var id: Int
         var name: String
         var email: String
-        //6
+        //6 --
 
         //the cursor is just the selector of id's
             if(cursor.moveToFirst()) {
@@ -131,6 +131,21 @@ class DatabaseHandler (context: Context) :
         db.close()
         return success
     }//9
+
+    fun getAllNamesList() : ArrayList<String> {
+        val list = ArrayList<String>()
+        val db = this.readableDatabase
+
+        val cursor = db.rawQuery("SELECT $KEY_NAME FROM $TABLE_CONTACTS", null)
+
+        while(cursor.moveToNext()){
+            val nameValue = (cursor.getString(cursor.getColumnIndex(KEY_NAME)))
+            //adds the date value to the arraylist
+            list.add(nameValue)
+        }
+        cursor.close()
+        return list
+    }
 
 
 }
